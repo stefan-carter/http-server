@@ -11,3 +11,5 @@ public class HttpServerApplication {
 	}
 
 }
+
+// Ctrl C stops server running.
