@@ -1,9 +1,14 @@
 package co.uk.barclays.httpserver;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Restaurant {
@@ -13,11 +18,18 @@ public class Restaurant {
     private String name;
     private String imageURL;
 
-    public int getId() {
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id")
+    private List<Menu> menus;
+
+    public Restaurant() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -35,6 +47,10 @@ public class Restaurant {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public List<Menu> getMenus() {
+        return this.menus;
     }
 
 }
